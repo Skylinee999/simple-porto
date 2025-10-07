@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import { ScrollLinked } from "@/components/scroller"
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -22,14 +23,12 @@ export function Header() {
     { label: "roadmap", id: "roadmap" },
   ]
 
-  // Variants untuk animasi mobile menu
   const mobileMenuVariants = {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 }
   }
 
-  // Variants untuk animasi item menu
   const menuItemContainerVariants = {
     initial: { opacity: 0 },
     animate: {
@@ -47,7 +46,6 @@ export function Header() {
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 max-w-6xl">
-          {/* Left side - Logo and Menu */}
           <div className="flex items-center gap-4">
             <Button 
               variant="ghost" 
@@ -79,8 +77,8 @@ export function Header() {
             </Button>
 
             <span className="text-xl font-bold tracking-widest">S H</span>
+            <ScrollLinked />
 
-            {/* Desktop navigation */}
             <nav className="hidden md:flex items-center gap-6 ml-8">
               {navItems.map((item) => (
                 <motion.button
@@ -96,12 +94,10 @@ export function Header() {
             </nav>
           </div>
 
-          {/* Right side - Personal Website text */}
           <span className="text-sm text-muted-foreground">Personal Website</span>
         </div>
       </header>
 
-      {/* Mobile Menu dengan AnimatePresence */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -137,7 +133,6 @@ export function Header() {
         )}
       </AnimatePresence>
 
-      {/* Overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
