@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { ScrollLinked } from "@/components/scroller"
 
-export function Header() {
+// Tambahkan interface untuk props
+interface HeaderProps {
+  className?: string;
+}
+
+// Ubah deklarasi komponen untuk menerima props
+export function Header({ className }: HeaderProps) {
   const [open, setOpen] = useState(false)
 
   const scrollToSection = (id: string) => {
@@ -44,7 +50,8 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Terapkan className ke elemen header */}
+      <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className || ""}`}>
         <div className="container mx-auto flex h-16 items-center justify-between px-4 max-w-6xl">
           <div className="flex items-center gap-4">
             <Button 
